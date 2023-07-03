@@ -3,7 +3,10 @@ import './App.css';
 import {BrowserRouter as Router,Route} from 'react-router-dom';
 import Signup from './Pages/Signup';
 import Login from  './Pages/Login'
-import { AuthContext } from './store/Context';
+import Create from './Pages/Create'
+import ViewPost from './Pages/ViewPost'
+import { AuthContext, FirebaseContext } from './store/Context';
+import Post from './store/PostContext';
 /**
  * ?  =====Import Components=====
  */
@@ -11,12 +14,16 @@ import Home from './Pages/Home';
 
 
 function App() {
-  const {user} =useContext(AuthContext)
+  const {setUser} =useContext(AuthContext)
+  const {firebase} =useContext(FirebaseContext)
   useEffect(()=>{
-   
+   firebase.auth().onAuthStateChanged((user)=>{
+    setUser(user)
+   })
   })
   return (
     <div>
+      <Post>
       <Router>
         <Route exact path='/'>
         <Home />
@@ -27,7 +34,14 @@ function App() {
         <Route exact path='/login'>
         <Login />
         </Route>
+        <Route exact path='/create'>
+        <Create />
+        </Route>
+        <Route exact path='/view'>
+        <ViewPost />
+        </Route>
       </Router>
+      </Post>
      
     </div>
   );
