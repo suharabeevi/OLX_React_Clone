@@ -1,5 +1,4 @@
 import React,{useState,useEffect,useContext}from 'react';
-
 import Heart from '../../assets/Heart';
 import './Post.css';
 import { useHistory } from 'react-router-dom';
@@ -34,8 +33,9 @@ useEffect(()=>{
             className="card"
             onClick={()=>{
               setPostDetails(product)
+              history.push('/view')
             }}
-            
+  
           >
             <div className="favorite">
               <Heart></Heart>

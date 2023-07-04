@@ -25,21 +25,27 @@ function App() {
     <div>
       <Post>
       <Router>
+
         <Route exact path='/'>
         <Home />
         </Route>
+
         <Route  path='/signup'>
         <Signup />
         </Route>
+
         <Route exact path='/login'>
         <Login />
         </Route>
+
         <Route exact path='/create'>
         <Create />
         </Route>
+
         <Route exact path='/view'>
         <ViewPost />
         </Route>
+        
       </Router>
       </Post>
      

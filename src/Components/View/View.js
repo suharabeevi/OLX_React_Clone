@@ -5,7 +5,7 @@ import { FirebaseContext } from '../../store/Context';
 function View() {
   const [userDetails,setUserDetails] = useState()
   const {postDetails}= useContext(PostContext)
-  const {firebase} =useEffect(FirebaseContext)
+  const {firebase} =useContext(FirebaseContext)
   useEffect(()=>{
     const {userId} = postDetails
    firebase.firestore().collection('users').where('id','==',userId).get().then((res)=>{
@@ -25,13 +25,12 @@ function View() {
       <div className="rightSection">
         <div className="productDetails">
           <p>&#x20B9; {postDetails.price} </p>
-          <span>YAMAHA R15V3</span>
-          <p>Two Wheeler</p>
-          <span>Tue May 04 2021</span>
+          <span>{postDetails.name}</span>
+          <p>{postDetails.category}</p>
+          <span>{postDetails.createAt}</span>
         </div>
         { userDetails && <div className="contactDetails">
-          <p>Seller details</p>
-          <p>{userDetails.username}</p>
+          <p>{userDetails.Username}</p>
           <p>{userDetails.phone}</p>
         </div>}
       </div>
